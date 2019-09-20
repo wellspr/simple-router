@@ -59,9 +59,13 @@ class Request{
   }
 
   public static function get_query_params($url){
-    $url_components = parse_url($url);
-    parse_str($url_components['query'], $params);
-    return $params;
+    if(self :: has_query($url)){
+      $url_components = parse_url($url);
+      parse_str($url_components['query'], $params);
+      return $params;
+    }else{
+      echo "There is no query!";
+    }
   }
 
   public function get_request_uri(){
